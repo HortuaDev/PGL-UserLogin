@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
-import Header from "../../components/HeaderList";
-import NavBar from "../../components/NavBar";
-import Color from "../../utils/styles/ColorList";
-import List from "../../components/List";
-import { Product } from "../../types/CardProduct";
+import Header from "../../../components/HeaderList";
+import NavBar from "../../../components/NavBar";
+import Color from "../../../utils/styles/ColorList";
+import List from "../../../components/List";
+import { Product } from "../../../types/CardProduct";
 import uuid from "react-native-uuid";
-import Footer from "../../components/Footer";
+import Footer from "../../../components/Footer";
 import { useState } from "react";
 
 export default function listProducts() {

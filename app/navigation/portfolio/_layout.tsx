@@ -2,7 +2,7 @@ import { Slot, Tabs } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import React, { createContext, useState } from "react";
 import { Text, View } from "react-native";
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 
 type TabsContextType = {
   displayMyQR: boolean;

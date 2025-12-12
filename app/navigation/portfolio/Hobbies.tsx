@@ -1,7 +1,7 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useContext } from "react";
-import styles from "../../utils/styles/PrincipalContentStyles";
-import { TabsContext } from "../portfolio/_layout";
+import styles from "../../../utils/styles/PrincipalContentStyles";
+import { TabsContext } from "./_layout";
 
 const Hobbies = () => {
   const context = useContext(TabsContext);

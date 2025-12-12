@@ -1,8 +1,8 @@
 import { View } from "react-native";
 import React, { useContext } from "react";
 import QRCode from "react-native-qrcode-svg";
-import styles from "../../utils/styles/QrImageStyles";
-import { TabsContext } from "../portfolio/_layout"; // Ajusta la ruta si es necesario
+import styles from "../../../utils/styles/QrImageStyles";
+import { TabsContext } from "./_layout"; // Ajusta la ruta si es necesario
 
 const QrImage = () => {
   const context = useContext(TabsContext);
