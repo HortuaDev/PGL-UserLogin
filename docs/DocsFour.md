@@ -1,40 +1,36 @@
-# Drawer en la Aplicación
+# Ejercicio 4
 
-Se ha implementado un **drawer** (menú lateral de navegación) en el layout principal.
+## Implementar cierre de sesion
 
-## Ejemplo de Código
+creamos un **boton** en el **drawer**, que al ser presionado _llamara a una funcion_, que se encargara de **eliminar el token** con la clave **userToken** del **async-storage** y redirigir al ususario a la pagina del **login**, segun lo solicitado por ti **Adri**.
+
+### codigo
+
+#### funcion que elimina el token y redirige al usuario
 
 ```
-const MainLayout = () => {
-  return (
-    <Drawer>
-      <Drawer.Screen
-        name="index"
-        options={{
-          title: "Inicio",
-        }}
-      />
-      <Drawer.Screen
-        name="portfolio"
-        options={{
-          title: "Portfolio",
-        }}
-      />
-    </Drawer>
-  );
+export const logout = async () => {
+  try {
+    await AsyncStorage.removeItem("userToken");
+    router.replace("/login");
+  } catch (error) {
+    console.error("Error al cerrar sesion:", error);
+  }
 };
-
 ```
 
-- Esto asegura que, al abrir la app, la pantalla de bienvenida es lo primero que verá el usuario.
+#### boton a la derecha del drawer dentro de la pagina de bienvenida dentro del proyecto anterior (navigation)
 
 ```
-<Drawer.Screen
-    name="index"
-    options={{
-        title: "Inicio",
-    }}
-/>
+    <Drawer
+      screenOptions={{
+        headerRight: () => <Button title="Logout" onPress={logout} />,
+      }}
+    >
 ```
+
+### captura
+
+<img src="./images/exerciceFour/boton.png" alt="boton de logout" width="300" heigth="500"/>
 
 [Volver al README](../README.md)
