@@ -1,44 +1,57 @@
-import { Image, StyleSheet, Text, View } from "react-native";
-import React from "react";
-import { Link } from "expo-router";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  TextInput,
+  Button,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import { styles } from "../utils/styles/RegisterStyles";
+import { registerService } from "../services/registerService";
+import { router } from "expo-router";
 
-const WelcomePage = () => {
+export default function RegisterPage() {
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { handleRegister, handleLogin } = registerService();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome User</Text>
+      <Text style={styles.title}>Registro de Usuario</Text>
 
-      <Image source={require("../assets/cat.jpg")} style={styles.avatarImage} />
+      <TextInput
+        style={styles.input}
+        placeholder="Nombre completo"
+        value={fullname}
+        onChangeText={setFullname}
+      />
 
-      <View style={styles.buttonsGroup}>
-        <View style={styles.buttonContainer}>
-          <Link style={styles.buttonText} href="/portfolio/Hobbies" push>
-            Portfolio
-          </Link>
-        </View>
-      </View>
+      <TextInput
+        style={styles.input}
+        placeholder="Correo electronico"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Contraseña"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+
+      <Button
+        title="Crear cuenta"
+        onPress={() => handleRegister({ fullname, email, password })}
+      />
+
+      <TouchableOpacity onPress={() => router.push("/login")}>
+        <Text style={styles.link}>Ya tengo cuenta</Text>
+      </TouchableOpacity>
     </View>
   );
-};
-
-export default WelcomePage;
-
-const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", alignItems: "center" },
-
-  title: { fontWeight: "bold", fontSize: 24, marginBottom: 20 },
-  buttonsGroup: { flexDirection: "row", gap: 20 },
-  buttonContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: "blue",
-    backgroundColor: "lightgray",
-    padding: 10,
-  },
-  buttonText: {
-    color: "blue",
-    margin: 0,
-  },
-  avatarImage: { width: 150, height: 150, borderRadius: 75, marginBottom: 20 },
-});
+}
