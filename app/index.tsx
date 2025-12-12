@@ -1,21 +1,32 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  TextInput,
-  Button,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from "react-native";
+import { View, TextInput, Button, Text, TouchableOpacity } from "react-native";
 import { styles } from "../utils/styles/RegisterStyles";
 import { registerService } from "../services/registerService";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function RegisterPage() {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { handleRegister, handleLogin } = registerService();
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem("userToken");
+        if (value) {
+          router.replace("/navigation");
+        } else {
+          router.replace("/login");
+        }
+      } catch (e) {
+        console.error("Error reading userToken from AsyncStorage:", e);
+      }
+    };
+    getData();
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Registro de Usuario</Text>
@@ -49,7 +60,7 @@ export default function RegisterPage() {
         onPress={() => handleRegister({ fullname, email, password })}
       />
 
-      <TouchableOpacity onPress={() => router.push("/login")}>
+      <TouchableOpacity onPress={() => router.replace("/login")}>
         <Text style={styles.link}>Ya tengo cuenta</Text>
       </TouchableOpacity>
     </View>
