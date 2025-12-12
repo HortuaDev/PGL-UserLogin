@@ -1,6 +1,7 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, Button, Alert } from "react-native";
 import React from "react";
 import { Link } from "expo-router";
+import { getInfo } from "../../services/welcomeService";
 
 const WelcomePage = () => {
   return (
@@ -14,10 +15,24 @@ const WelcomePage = () => {
 
       <View style={styles.buttonsGroup}>
         <View style={styles.buttonContainer}>
-          <Link style={styles.buttonText} href="/portfolio/Hobbies" push>
+          <Link style={styles.buttonText} href="navigation/portfolio" push>
             Portfolio
           </Link>
         </View>
+        <Button
+          title="get token"
+          onPress={async () => {
+            const result = await getInfo();
+            if (!result) {
+              Alert.alert("Error", "No se pudo obtener la información");
+              return;
+            }
+            Alert.alert(
+              "Bienvenido",
+              `${result.data.object} \n\n Token: ${result.token}`
+            );
+          }}
+        ></Button>
       </View>
     </View>
   );
