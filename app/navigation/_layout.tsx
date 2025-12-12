@@ -1,9 +1,15 @@
 import React from "react";
 import { Drawer } from "expo-router/drawer";
+import { Button } from "react-native";
+import { logout } from "../../services/authService";
 
 const MainLayout = () => {
   return (
-    <Drawer>
+    <Drawer
+      screenOptions={{
+        headerRight: () => <Button title="Logout" onPress={logout} />,
+      }}
+    >
       <Drawer.Screen
         name="index"
         options={{
