@@ -34,9 +34,6 @@ export default function LoginScreen() {
       <Button
         title="Iniciar Sesion"
         onPress={() => {
-          console.log("esto: ");
-          console.log(email, password);
-
           sendLogin(email, password);
         }}
       />

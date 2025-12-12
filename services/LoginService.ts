@@ -1,10 +1,21 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { validateEmail, validatePassword } from "../utils/validation";
 import { router } from "expo-router";
 import { Alert } from "react-native";
 
 export const sendLogin = async (email: string, pswd: string) => {
   
     // se llama pswd porque asi lo pide la api
+
+    if (!validateEmail(email)) {
+    Alert.alert("Error", "Email invalido");
+    return;
+    }
+    
+    if (!validatePassword(pswd)) {
+    Alert.alert("Error", "La contraseña debe tener minimo 6 caracteres");
+    return;
+    }
 
     const loginData = { email, pswd};
 
