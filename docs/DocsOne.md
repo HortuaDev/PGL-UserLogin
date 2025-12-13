@@ -51,7 +51,7 @@ Al presionar el boton ejecuta la funcion **handlerRegister** y le pasa por param
 
 #### funcionalidad
 
-Se reciben los datos del usuario y se valida que no este el nombre no este **vacio** , que el email cumpla con tener un **@** y un punto **(.)** y que la contraseña tenga minimo **6 caracteres**.
+Se reciben los datos del usuario y se valida que el nombre no este **vacio** , que el email cumpla con tener un **@** y un punto **(.)** y que la contraseña tenga minimo **6 caracteres**.
 
 Si el objeto cumple con todo, se le envia a la api proporcionada por el **papasote Adri** y esta lo registrara en una base de datos **sqlito** ;p ;p , en caso de ser exitosa la accion, nos devuelve un objeto con una propiedad status, que evaluamos que sea **200 o 201**, de ser asi mostramos un **alert** con el mesaje de **Registro exitoso** y lo redirigimos a la pagina de **/Login**, de no ser asi, mostramos un **alert** con el mensaje de **Error** de respuesta de la api, y si **peta** por otro motivo (por lo general que no encendi la api ;p ) se muestra una alerta de **No se pudo conectar al servidor** o algo asi.
 
